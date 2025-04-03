@@ -32,7 +32,7 @@ alsa-ucm-conf.check = "1.2.12-1.1"
 atomupd-daemon.ignore = true
 
 # FIXME: has some not-yet-upstream patches, maybe we want them in nixpkgs?
-bluez.check = "5.79-1.9"
+bluez.check = "5.79-1.10"
 
 # more A/B stuff
 bmap-tools.ignore = true
@@ -148,7 +148,7 @@ jupiter-firewall.ignore = true
 
 jupiter-hw-support = { map = ["jupiter-hw-support", "steamdeck-hw-theme", "steamdeck-firmware", "steamos-polkit-helpers"], pkgrel = 2 }
 
-jupiter-legacy-support.check = "1.153-1"
+jupiter-legacy-support.check = "1.154-1"
 
 # devkit stuff
 jupiter-resolved-nomdns.ignore = true
@@ -180,7 +180,7 @@ libversion.ignore = true
 # packaging changes
 libxml2.ignore = true
 
-linux-firmware-neptune = { map = "linux-firmware-jupiter", pkgrel = 1 }
+linux-firmware-neptune = { map = "linux-firmware-jupiter", pkgrel = 2 }
 
 # some other mainline kernel build
 linux-lts.ignore = true
@@ -298,7 +298,7 @@ steamos-atomupd-client.ignore = true
 # applied as NixOS modules instead
 # check both to make sure we get the latest changes
 steamos-customizations-git.check = "20250219.1-1"
-steamos-customizations-jupiter.check = "20250310.1-1"
+steamos-customizations-jupiter.check = "20250402.1-1"
 
 # devkit stuff
 steamos-devkit-service.ignore = true
