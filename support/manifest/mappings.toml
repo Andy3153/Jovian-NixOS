@@ -32,7 +32,7 @@ alsa-ucm-conf.check = "1.2.12-1.1"
 atomupd-daemon.ignore = true
 
 # FIXME: has some not-yet-upstream patches, maybe we want them in nixpkgs?
-bluez.check = "5.79-1.10"
+bluez.check = "5.79-1.11"
 
 # more A/B stuff
 bmap-tools.ignore = true
@@ -60,6 +60,9 @@ desync.ignore = true
 
 # enables SteamOS A/B stuff
 discover.check = "6.2.5-1.1"
+
+# SteamOS disk encryption thing
+dirlock.ignore = true
 
 # we don't need this
 dkms.ignore = true
@@ -93,7 +96,7 @@ galileo-mura = { map = true, pkgrel = 2, fixup = "v" }
 gamescope.map = ["gamescope", "gamescope-session"]
 
 # only there to split out locales
-glibc.check = "2.40+r16+gaa533d58ff-2"
+glibc.check = "2.41+r47+g046b33800c3e-1"
 
 # FIXME: dev tool
 gpu-trace.ignore = true
@@ -110,7 +113,7 @@ holo-earlyoom.check = "1.0-1"
 holo-fstab-repair.check = "0.1-1"
 
 # the split out locales
-holo-glibc-locales.check = "2.40+r16+gaa533d58ff-2"
+holo-glibc-locales.check = "2.41+r47+g046b33800c3e-2"
 
 # we don't use those repos
 holo-keyring.ignore = true
@@ -133,8 +136,7 @@ ibus-anthy.ignore = true
 ibus-pinyin.ignore = true
 ibus-table-cangjie-lite.ignore = true
 
-# currently unused
-inputplumber.ignore = true
+inputplumber.map = true
 
 # backport from newer version than what we have
 iwd.check = "3.0-1"
@@ -146,12 +148,9 @@ jupiter-fan-control = { map = true, pkgrel = 4 }
 # we have our own, better one
 jupiter-firewall.ignore = true
 
-jupiter-hw-support = { map = ["jupiter-hw-support", "steamdeck-hw-theme", "steamdeck-firmware", "steamos-polkit-helpers"], pkgrel = 2 }
+jupiter-hw-support = { map = ["jupiter-hw-support", "steamdeck-hw-theme", "steamdeck-firmware", "steamos-polkit-helpers"], pkgrel = 1 }
 
 jupiter-legacy-support.check = "1.154-1"
-
-# devkit stuff
-jupiter-resolved-nomdns.ignore = true
 
 # Valve telemetry stuff
 jupiter-steamos-log-submitter.ignore = true
@@ -210,8 +209,7 @@ lsb-release.ignore = true
 # packaging changes, removes a heavy dependency
 maliit-keyboard.check = "2.3.1-4.1"
 
-# nixpkgs is ahead currently
-mangohud.check = "0.7.2.rc3.r11.g31f2ca5-2.3"
+mangohud.check = "0.8.1.r49.ga113f7c-1"
 
 # we take upstream patches and apply on top of our mesa
 mesa.check = "24.3.4.197725.radeonsi_24.3.4-2"
@@ -234,6 +232,9 @@ networkmanager.check = "1.50.1-1.2"
 # Arch stuff
 pacman-contrib.ignore = true
 paru.ignore = true
+
+# Security backports
+perl.ignore = true
 
 # we ship a newer version, but patches may be valuable
 pipewire.check = "1:1.2.7-1.1"
@@ -272,7 +273,7 @@ renderdoc-minimal.ignore = true
 rtl88x2ce-dkms.ignore = true
 
 # not used yet
-scx-scheds.check = "1.0.10.linux.neptune.611-1"
+scx-scheds.check = "1.0.11.linux.neptune.611-1"
 
 # FIXME: package this
 steam-im-modules.ignore = true
@@ -298,7 +299,7 @@ steamos-atomupd-client.ignore = true
 # applied as NixOS modules instead
 # check both to make sure we get the latest changes
 steamos-customizations-git.check = "20250219.1-1"
-steamos-customizations-jupiter.check = "20250402.1-1"
+steamos-customizations-jupiter.check = "20250414.1-1"
 
 # devkit stuff
 steamos-devkit-service.ignore = true
@@ -355,7 +356,7 @@ vpower.ignore = true
 
 wakehook = { map = true, pkgrel = 1 }
 
-wireplumber = { map = "wireplumber-jupiter", pkgrel = "1.1" }
+wireplumber = { map = "wireplumber-jupiter", pkgrel = "1.2" }
 
 # ours is newer
 xdg-desktop-portal-gtk.ignore = true

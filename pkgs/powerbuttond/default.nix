@@ -2,27 +2,26 @@
   lib,
   stdenv,
   fetchFromGitHub,
-  substituteAll,
+  replaceVars,
   pkg-config,
   libevdev,
   udev,
   jovian-steam-protocol-handler,
 }:
-stdenv.mkDerivation {
+stdenv.mkDerivation(finalAttrs: {
   pname = "powerbuttond";
-  version = "3.0";
+  version = "3.1";
 
   src = fetchFromGitHub {
     owner = "Jovian-Experiments";
     repo = "powerbuttond";
-    rev = "v3.0"; # jovian/multi
-    hash = "sha256-MJIq7zilItTS05EiCzU8fJv5sY0gUdEwpNAt5bPREzk=";
+    rev = "v${finalAttrs.version}";
+    hash = "sha256-fYpSe6fSUn5qCEyjOeHkVSHBX2Nof+aiazYd8ymI/PM=";
   };
 
   patches = [
-    (substituteAll {
+    (replaceVars ./jovian.patch {
       handler = jovian-steam-protocol-handler;
-      src = ./jovian.patch;
     })
   ];
 
@@ -46,4 +45,4 @@ stdenv.mkDerivation {
     description = "Steam Deck power button daemon";
     license = licenses.bsd2;
   };
-}
+})

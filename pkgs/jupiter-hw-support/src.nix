@@ -1,27 +1,26 @@
 { 
   stdenv, 
   fetchFromGitHub, 
-  substituteAll, 
+  replaceVars, 
   jovian-steam-protocol-handler, 
   systemd,
 }:
 
 stdenv.mkDerivation rec {
   pname = "jupiter-hw-support-source";
-  version = "20250320.1";
+  version = "20250501.0";
 
   src = fetchFromGitHub {
     owner = "Jovian-Experiments";
     repo = "jupiter-hw-support";
     rev = "jupiter-${version}";
-    hash = "sha256-bYuEBBgQgIlSPC3WhU4Zjsn/jDlvfgH39j+51sC5c5A=";
+    hash = "sha256-XbdW7NDfltHMdWGXtZD2rplP+PojI9LTSgGjfQC8ZoE=";
   };
 
   patches = [
-    (substituteAll {
+    (replaceVars ./automount-fix-system-paths.patch {
       handler = jovian-steam-protocol-handler;
       systemd = systemd;
-      src = ./automount-fix-system-paths.patch;
     })
     # Remove `deck` username assumption
     ./0001-Jovian-Ensure-automounting-works-for-any-UID-1000-us.patch

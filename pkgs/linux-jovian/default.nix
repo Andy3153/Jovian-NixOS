@@ -4,8 +4,8 @@ let
   inherit (lib) versions;
 
   kernelVersion = "6.11.11";
-  vendorVersion = "valve10";
-  hash = "sha256-3KsNLm9mvooyWfQsU1gV80bYBTZH9Q3k18ahKxLDA48=";
+  vendorVersion = "valve13";
+  hash = "sha256-keu9aHHM2fFcBd3M22jP/ntLL5/SZhTu2TKvEG02iSE=";
 in
 buildLinux (args // rec {
   version = "${kernelVersion}-${vendorVersion}";
@@ -99,6 +99,12 @@ buildLinux (args // rec {
 
     # Enable support for AMDGPU color calibration features
     DRM_AMD_COLOR_STEAMDECK = yes;
+
+    LENOVO_WMI_GAMEZONE = module;
+    LENOVO_WMI_TUNING = module;
+
+    ZOTAC_ZONE_HID = module;
+    ZOTAC_ZONE_PLATFORM = module;
 
     # PARAVIRT options have overhead, even on bare metal boots. They can cause
     # spinlocks to not be inlined as well. Either way, we don't intend to run this
