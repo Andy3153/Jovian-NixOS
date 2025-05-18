@@ -21,9 +21,11 @@ rec {
 
   galileo-mura = final.callPackage ./pkgs/galileo-mura { };
 
+  # This can't be callPackage, because it breaks the arguments
+  # being passed in to `override`.
   gamescope = import ./pkgs/gamescope {
     gamescope' = prev.gamescope;
-    inherit (final) fetchFromGitHub;
+    inherit (final) lib fetchFromGitHub fetchpatch;
   };
   gamescope-wsi = gamescope.override {
     enableExecutable = false;
@@ -55,9 +57,8 @@ rec {
   steamos-manager = final.callPackage ./pkgs/steamos-manager { };
   steamos-polkit-helpers = final.callPackage ./pkgs/jupiter-hw-support/polkit-helpers.nix { };
   steamdeck-dsp = final.callPackage ./pkgs/steamdeck-dsp { };
-  wireplumber-jupiter = import ./pkgs/wireplumber {
+  wireplumber-jupiter = final.callPackage ./pkgs/wireplumber {
     wireplumber' = prev.wireplumber;
-    inherit (final) fetchFromGitHub;
   };
 
   opensd = final.callPackage ./pkgs/opensd { };
@@ -90,8 +91,7 @@ rec {
   jovian-hardware-survey = final.callPackage ./pkgs/jovian-hardware-survey { };
 
   steam-unwrapped = final.callPackage ./pkgs/steam-jupiter/unwrapped.nix {
-    # FIXME: compatibility with older nixpkgs, remove this fallback in a couple weeks
-    steam-unwrapped = prev.steam-unwrapped or prev.steamPackages.steam;
+    steam-unwrapped' = prev.steam-unwrapped;
   };
   steam = final.callPackage ./pkgs/steam-jupiter/fhsenv.nix {
     steam = prev.steam;

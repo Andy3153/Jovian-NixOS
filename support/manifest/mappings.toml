@@ -201,7 +201,7 @@ linux-neptune-rtw-debug.ignore = true
 linux-neptune-68.ignore = true
 
 # new kernel
-linux-neptune-611 = { map = "linux_jovian", pkgrel = 1 }
+linux-neptune-611 = { map = "linux_jovian", pkgrel = 3 }
 
 # we don't identify as SteamOS
 lsb-release.ignore = true
@@ -255,6 +255,9 @@ podman.ignore = true
 # renamed to steamos-powerbuttond
 powerbuttond.ignore = true
 
+# steamos-specific hack
+powerdevil.ignore = true
+
 # some internal tooling, not shipped
 python-libversion.ignore = true
 python-pylink-square.ignore = true
@@ -273,7 +276,7 @@ renderdoc-minimal.ignore = true
 rtl88x2ce-dkms.ignore = true
 
 # not used yet
-scx-scheds.check = "1.0.11.linux.neptune.611-1"
+scx-scheds.check = "1.0.12.linux.neptune.611-1"
 
 # FIXME: package this
 steam-im-modules.ignore = true
