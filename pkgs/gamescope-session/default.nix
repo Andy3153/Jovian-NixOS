@@ -2,6 +2,10 @@
   lib,
   stdenv,
   resholve,
+  replaceVars,
+  symlinkJoin,
+  xdg-desktop-portal-gamescope,
+  xdg-desktop-portal-holo,
   writeText,
   fetchFromGitHub,
   python3,
@@ -109,18 +113,23 @@ let
   };
 in stdenv.mkDerivation(finalAttrs: {
   pname = "gamescope-session";
-  version = "3.16.9-2";
+  version = "3.16.11-2";
 
   src = fetchFromGitHub {
     owner = "Jovian-Experiments";
     repo = "PKGBUILDs-mirror";
     rev = "jupiter-main/gamescope-${finalAttrs.version}";
-    hash = "sha256-WkVr8OEAo3shJuQPMOff6nJQF91qgmr0RA0lqHidi+g=";
+    hash = "sha256-2SzRcD78ehDhXZ1Iga/sBzjt9HKfySiFBXS4aR1wSR8=";
   };
 
   patches = [
-    ./0001-gamescope-session-Add-xdg-environment-overrides.patch
-    ./0002-start-gamescope-session-do-not-set-XDG_DESKTOP_PORTA.patch
+    ./environment.patch
+    (replaceVars ./portals.patch {
+      gamescope-portals = symlinkJoin {
+        name = "gamescope-portals";
+        paths = [ xdg-desktop-portal-gamescope xdg-desktop-portal-holo ];
+      };
+    })
   ];
 
   postPatch = ''

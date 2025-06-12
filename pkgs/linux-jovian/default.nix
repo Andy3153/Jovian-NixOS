@@ -4,8 +4,8 @@ let
   inherit (lib) versions;
 
   kernelVersion = "6.11.11";
-  vendorVersion = "valve13";
-  hash = "sha256-keu9aHHM2fFcBd3M22jP/ntLL5/SZhTu2TKvEG02iSE=";
+  vendorVersion = "valve17";
+  hash = "sha256-yy4eOXTsG0GiKvTW6bWqG9A1QUiNlnzdkkAXqJlZVMQ=";
 in
 buildLinux (args // rec {
   version = "${kernelVersion}-${vendorVersion}";
@@ -108,6 +108,8 @@ buildLinux (args // rec {
     ZOTAC_ZONE_PLATFORM = module;
 
     ASUS_ALLY_HID = module;
+    # Jovian: not actually present in-tree currently
+    # ASUS_ARMOURY = module;
 
     # PARAVIRT options have overhead, even on bare metal boots. They can cause
     # spinlocks to not be inlined as well. Either way, we don't intend to run this

@@ -25,13 +25,15 @@ rec {
   # being passed in to `override`.
   gamescope = import ./pkgs/gamescope {
     gamescope' = prev.gamescope;
-    inherit (final) lib fetchFromGitHub fetchpatch;
+    inherit (final) fetchFromGitHub;
   };
   gamescope-wsi = gamescope.override {
     enableExecutable = false;
     enableWsi = true;
   };
   gamescope-session = final.callPackage ./pkgs/gamescope-session { };
+  xdg-desktop-portal-gamescope = final.callPackage ./pkgs/xdg-desktop-portal-gamescope { };
+  xdg-desktop-portal-holo = final.callPackage ./pkgs/xdg-desktop-portal-holo { };
 
   inputplumber = final.callPackage ./pkgs/inputplumber {
     inputplumber' = prev.inputplumber;
